@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head') %>
+<body class="body-admin">
+    <%- include('../partials/header-admin') %>
+    <main class="main-create">
+        <h3 class="title-admin">Creación de productos</h3>
+        <div>
+            <form class="creacion-producto" id="formCreate" action="/admin" method="POST" enctype="multipart/form-data">
+                <div class="form-create">
+                    <label class="estilo" for="name-admin">Nombre del producto</label>
+                    <div>
+                        <input type="text" name="name" id="name-admin" class="inputdos"><i class="fas fa-check-circle" id="input-name"></i>
+                    </div>
+                    <span id="nameErrors"></span>
+                    <% if (locals.errors && errors.name) { %>
+                        <small class="msg-error"><%= errors.name.msg %> </small>
+                    <% } %>
+                    <label class="estilo" for="price-admin">Precio:</label>
+                    <div class="div-i">
+                        <input type="text" name="price" id="price-admin" class="inputdos"><i class="fas fa-check-circle" id="input-price"></i>
+                    </div>
+                    <span id="priceErrors"></span>
+                    <% if (locals.errors && errors.price) { %>
+                        <small class="msg-error"><%= errors.price.msg %> </small>
+                    <% } %>
+                    <label class="estilo" for="discount-admin">Descuento:</label>
+                    <div>
+                        <input type="text" name="discount" id="discount-admin" class="inputdos"><i class="fas fa-check-circle" id="input-discount"></i>
+                    </div>
+                    <span id="discountErrors"></span>
+                    <% if (locals.errors && errors.discount) { %>
+                        <small class="msg-error"><%= errors.discount.msg %> </small>
+                    <% } %>
+                    <label class="estilo" for="stock-admin">Cantidad:</label>
+                    <div>
+                        <input type="text" name="stock" id="stock-admin" class="inputdos"><i class="fas fa-check-circle" id="input-stock"></i>
+                    </div>
+                    <span id="stockErrors"></span>
+                    <% if (locals.errors && errors.stock) { %>
+                        <small class="msg-error"><%= errors.stock.msg %></small>
+                    <% } %>
+                    <label class="estilo" for="marca-admin">Marca:</label>
+                    <div>
+                        <input type="text" name="marca" id="marca-admin" class="inputdos"><i class="fas fa-check-circle" id="input-marca"></i>
+                    </div>
+                    <span id="marcaErrors"></span>
+                    <% if (locals.errors && errors.marca) { %>
+                        <small class="msg-error"><%= errors.marca.msg %> </small>
+                    <% } %>
+                    <label class="estilo" for="categoria-admin">Elige la categoria:</label>
+                    <select id="categoria-admin" class="select-admin" name="category">
+                        <option selected hidden value="">categoria</option>
+                        <% categories.forEach(category => { %>
+                            <option value="<%- category.id %>" <%= locals.old && old.category == category.id ? "selected" : "" %> ><%- category.name %> </option>
+                        <% }) %>
+                    </select>
+                    <span id="categoryErrors"></span>
+                    <% if (locals.errors && errors.category) { %>
+                        <small class="msg-error"><%= errors.category.msg %> </small>
+                    <% } %>
+                    <label class="estilo" for="subcategory">Elige la subcategoria:</label>
+                    <select id="subcategoria-admin" class="select-admin" name="subcategory">
+                        <option selected hidden value="">subcategorias</option>
+                        <% subcategories.forEach(subcategory => { %>
+                            <option value="<%- subcategory.id %>" <%= locals.old && old.subcategory == subcategory.id ? "selected" : ""  %> ><%- subcategory.name %> </option>
+                          <% }) %>
+                    </select> 
+                    <span id="subcategoryErrors"></span>
+                    <% if (locals.errors && errors.subcategory) { %>
+                        <small class="msg-error"><%= errors.subcategory.msg %> </small>
+                    <% } %>
+                </div>
+                <div class="form-create">
+                    <label class="estilo" for="producto-img">Agregue foto del producto</label>
+                    <div class="div-img-preview">
+                        <div id="img-preview">
+
+                        </div>                    
+                        <input type="file" id="fileCreate" name="producto-img" accept="jpg" class="input-admin" multiple>
+                        <span class="msg-error" id="fileErrors"></span>
+                        <% if (locals.errors && errors.image) { %>
+                            <small class="msg-error"><%= errors.image.msg %></small>
+                        <% } %>
+                    </div>
+ 
+                    <label class="estilo" for="descripcion-admin">Descripción del producto</label>              
+                    <textarea name="description" id="descripcion-admin" cols="30" rows="10"></textarea>
+                    <span id="descriptionErrors"></span>
+                    <% if (locals.errors && errors.description) { %>
+                        <small class="msg-error"><%= errors.description.msg %> </small>
+                    <% } %>
+                    <div class="div-button-create">
+                        <span id="submitErrors"></span>
+                        <button type="submit" class="button-create">Guardar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+    <script src="/js/createProductValidator.js"></script>
+</body> 
+</html>

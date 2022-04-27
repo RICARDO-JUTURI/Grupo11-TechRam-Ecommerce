@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head') %>
+
+    <body>
+        <%- include('../partials/header') %>
+            <main class="home-main">
+                <section class="carousel-container">
+                    <div class="slides fade">
+                        <img src="images/logos/banner-techram.png" alt="pc" class="carrusel-img-div ">
+                    </div>
+                    <div class="slides fade">
+                        <img src="images/logos/banner-monitor_Mesa de trabajo 1.png" alt="banner1" class="carrusel-img-div ">
+                    </div>
+                    <div class="slides fade">
+                        <img src="images/logos/banner-neon_Mesa de trabajo 1.png" alt="banner2" class="carrusel-img-div ">
+                    </div>   
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                    <div class="dots">
+                        <span class="dot" onclick="currentSlide(1)"></span>
+                        <span class="dot" onclick="currentSlide(2)"></span>
+                        <span class="dot" onclick="currentSlide(3)"></span>
+                    </div>
+                </section>
+            </main>
+            <section class="productos">
+                <h3 class="title-card">Ofertas</h3>
+                <article class="productos-article">
+                    <% products.forEach(product => { %>
+                        <% if (product.discount != null) { %>
+                            <div class="productos-article__card">
+                                <div class="card-img">                        
+                                    <a href="/products/detail/<%- product.id %>"><img src="images/productos/<%- product.productImages[0].image %>"></a>
+                                    <h5 class="descripcion-producto"><%- product.name %></h5>
+                                    <p class="price">$<%= product.price - product.price * product.discount / 100 %></p>
+                                </div>
+                                <div class="button-producto">
+                                    <a href="/products/detail/<%- product.id %>">VER PRODUCTO</a>
+                                </div>
+                            </div>
+                        <% } %>
+                    <% }) %>
+                </article>
+                <h3 class="title-card">Productos destacados</h3>
+                <article class="productos-article">
+                    <% products.forEach(product => { %>
+                        <% if (product.discount == null) { %>
+                            <div class="productos-article__card">
+                                <div class="card-img">                        
+                                    <a href="/products/detail/<%- product.id %>"><img src="images/productos/<%- product.productImages[0].image %>"></a>
+                                    <h5 class="descripcion-producto"><%- product.name %></h5>
+                                    <p class="price">$<%= product.price - product.price * product.discount / 100 %></p>
+                                </div>
+                                <div class="button-producto">
+                                    <a href="/products/detail/<%- product.id %>">VER PRODUCTO</a>
+                                </div>
+                            </div>
+                        <% } %>
+                    <% }) %>
+                </article>
+            </section>
+        <%- include('../partials/footer') %>
+        <script src="/js/carrusel.js"></script>
+    </body>
+
+</html>

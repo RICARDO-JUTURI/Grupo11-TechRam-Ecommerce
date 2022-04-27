@@ -1,0 +1,110 @@
+<header>
+    <nav class="nav-container">
+        <div class="burguer-menu">
+            <input type="checkbox" id="menu">
+            <label for="menu"><i class="fas fa-bars"></i></label>
+            <ul class="nav__ul">
+                <% if (locals.user && locals.user.rol == 1){%>
+                    <li class="nav__li"><a href="/" class="nav__a">PRODUCTOS</a></li>
+                    <li class="nav__li"><a href="/users/perfil" class="nav__a">MI CUENTA</a></li>
+                    <li class="nav__li"><a href="/users/register" class="nav__a">REGISTRATE</a></li>
+                    <li class="nav__li"><a href="/users/login" class="nav__a">INGRESA</a></li>
+                    <li class="nav__li"><a href="/admin" class="nav__a">PERFIL ADMINISTRADOR</a></li>
+                <% } else if(locals.user && locals.user.rol == 0){%>
+                    <li class="nav__li"><a href="/" class="nav__a">PRODUCTOS</a></li>
+                    <li class="nav__li"><a href="/users/perfil" class="nav__a">MI CUENTA</a></li>
+                    <li class="nav__li"><a href="/users/register" class="nav__a">REGISTRATE</a></li>
+                    <li class="nav__li"><a href="/users/login" class="nav__a">INGRESA</a></li>
+                <% } else {%>
+                    <li class="nav__li"><a href="/" class="nav__a">PRODUCTOS</a></li>
+                    <li class="nav__li"><a href="/users/perfil" class="nav__a">MI CUENTA</a></li>
+                    <li class="nav__li"><a href="/users/register" class="nav__a">REGISTRATE</a></li>
+                    <li class="nav__li"><a href="/users/login" class="nav__a">INGRESA</a></li>
+                <% } %>
+            </ul>
+        </div>
+        <div class="container-logo">
+            <div class="logo-imagen">
+                <a href="/"><img src="/images/logos/eva.png" href="#" alt="techRam logo"></a>
+            </div>
+        </div>
+        <div class="container-icon">
+            <div class="buscador">
+                <input type="checkbox" id="search-bar">
+                <label for="search-bar"><i class="fas fa-search"></i></label>
+                <ul class="ul-buscador">
+                    <li class="li-buscador"><input type="text" placeholder="Buscar..."></li>
+                    <li class="li-buscador"><button class="boton-mobile"><i class="fas fa-search"></i></button></li>
+                </ul>
+            </div>
+            <div class="buscador-responsive">
+                <form action="/products/search" method="GET">
+                    <div id="div-buscador">
+                        <input type="search" name="keywords" placeholder="Buscar..">
+                        <button type="submit" class="boton-mobile"><i class="fas fa-search"></i></button>
+                    </div>
+                </form>              
+            </div>
+            <div >
+                <% if (locals.user){%>
+                    <p class="cajaAvatar"><img class="avatarUsuario" src="/images/users/default-image.png" alt="img-avatar" ></p>
+                    
+                    <!-- <input type="checkbox" id="logout" class="input-user"> -->
+                    <!-- <label for="logout" class="label-logout"><p class="user-p"></p></label> -->
+              <!--       <ul class="logout-ul" style="display: contents;    word-spacing: 3px;" >
+                        <li  class="li-logout"><a href="/users/logout">cerrar sesión</a></li>
+                    </ul> -->
+                    <div class="dropdown">
+                        <button onclick="myFunction()" class="dropbtn"><%=locals.user.firstName%></button>
+                        <div id="myDropdown" class="dropdown-content">
+                          <a href="/users/logout">cerrar sesión</a>
+                          <a href="/users/perfil">mi cuenta</a>
+                          
+                        </div>
+                      </div>
+                   
+                <% } else {%>
+                    <a href="/users/perfil"> <i class="fas fa-user" style="
+                        color: #b87cfd;
+                    "></i></a>
+                    <p class="user-p"> <a href="/users/perfil" style="
+                        color: white;" >mi cuenta</a></p>
+                <% } %>
+                
+               
+               
+            </div>
+            <div class="carrito">
+                <a href="/products/carrito"><i class="fas fa-shopping-cart" style="
+                    color: #b87cfd; "></i></a>
+                <p class="carrito-p"><a href="/products/carrito" >mi carrito</a></p>
+            </div>
+        </div>
+    </nav>
+    <div class="burguer-responsive">
+        <input type="checkbox" id="menu-responsive">
+            <label for="menu-responsive"><i class="fas fa-bars"></i></label>
+            <ul class="nav__ul">
+                <% if (locals.user && locals.user.rol == 1){%>
+                    <li class="nav__li"><a href="/" class="nav__a">PRODUCTOS</a></li>
+                    <li class="nav__li"><a href="/users/perfil" class="nav__a">MI CUENTA</a></li>
+                    <li class="nav__li"><a href="/products/intel" class="nav__a">INTEL</a></li>
+                    <li class="nav__li"><a href="/products/amd" class="nav__a">AMD</a></li>
+                    <li class="nav__li"><a href="/admin" class="nav__a">PERFIL ADMINISTRADOR</a></li>
+                <% } else if(locals.user && locals.user.rol == 0){%>
+                    <li class="nav__li"><a href="/" class="nav__a">PRODUCTOS</a></li>
+                    <li class="nav__li"><a href="/products/intel" class="nav__a">INTEL</a></li>
+                    <li class="nav__li"><a href="/products/amd" class="nav__a">AMD</a></li>
+                    <li class="nav__li"><a href="/users/perfil" class="nav__a">MI CUENTA</a></li>
+                <% } else {%>
+                    <li class="nav__li"><a href="/" class="nav__a">PRODUCTOS</a></li>
+                    <li class="nav__li"><a href="/products/intel" class="nav__a">INTEL</a></li>
+                    <li class="nav__li"><a href="/products/amd" class="nav__a">AMD</a></li>
+                    <li class="nav__li"><a href="/users/register" class="nav__a">REGISTRATE</a></li>
+                    <li class="nav__li"><a href="/users/login" class="nav__a">INGRESA</a></li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+    <script src="/js/desplegable.js"></script>
+</header>
